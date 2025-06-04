@@ -300,13 +300,15 @@ class HorseHumanClassifier extends GetView<HorseHumanClassifierController> {
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        Text(
-                                          controller.prediction,
-                                          style: TextStyle(
-                                            fontSize: 28,
-                                            fontWeight: FontWeight.bold,
-                                            color:
-                                                controller.getPredictionColor(),
+                                        Obx(
+                                          () => Text(
+                                            controller.prediction.value,
+                                            style: TextStyle(
+                                              fontSize: 28,
+                                              fontWeight: FontWeight.bold,
+                                              color: controller
+                                                  .getPredictionColor(),
+                                            ),
                                           ),
                                         ),
                                       ],

@@ -14,7 +14,7 @@ class HorseHumanClassifierController extends GetxController {
   HorseHumanClassifierController();
 
   File? image;
-  String prediction = '';
+  RxString prediction = ''.obs;
   RxDouble confidence = 0.0.obs;
   RxBool isLoading = false.obs;
   Interpreter? _interpreter;
@@ -85,7 +85,7 @@ class HorseHumanClassifierController extends GetxController {
       if (xFileImage != null) {
         image = File(xFileImage.path);
         isLoading.value = true;
-        prediction = '';
+        prediction.value = '';
         confidence.value = 0.0;
         await _classifyImage();
       }
@@ -159,32 +159,32 @@ class HorseHumanClassifierController extends GetxController {
         tempConfidence = 1.0 - output;
       }
 
-      prediction = predictedClass;
+      prediction.value = predictedClass;
       confidence.value = tempConfidence;
       isLoading.value = false;
     } catch (e) {
       debugPrint('Error classifying image: $e');
 
       isLoading.value = false;
-      prediction = 'Ha ocurrido un error';
+      prediction.value = 'Ha ocurrido un error';
       confidence.value = 0.0;
       _showErrorDialog(null, 'Fallo al clasificar la imagen: $e');
     }
   }
 
   Color getPredictionColor() {
-    if (prediction == 'Humano') {
+    if (prediction.value == 'Humano') {
       return Colors.blue;
-    } else if (prediction == 'Caballo') {
+    } else if (prediction.value == 'Caballo') {
       return Colors.brown;
     }
     return Colors.grey;
   }
 
   IconData getPredictionIcon() {
-    if (prediction == 'Humano') {
+    if (prediction.value == 'Humano') {
       return HugeIcons.strokeRoundedUser02;
-    } else if (prediction == 'Caballo') {
+    } else if (prediction.value == 'Caballo') {
       return HugeIcons.strokeRoundedHorseHead;
     }
     return HugeIcons.strokeRoundedInformationCircle;
