@@ -38,9 +38,19 @@ dependencies:
   tflite_flutter: ^0.11.0
 
 dev_dependencies:
+  flutter_launcher_icons: null
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+
+# Generate launcher icons settings
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/app_logo_squared.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/app_logo_squared.png"
+  min_sdk_android: 24 # android min sdk min:16, default 21
 
 flutter_assets:
   assets_path: assets/

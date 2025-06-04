@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="humans_or_horses"
+        android:label="Clasificador de Humanos y Caballos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
